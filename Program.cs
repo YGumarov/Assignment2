@@ -46,7 +46,7 @@ public class MyArrayList<T> : IMyList<T>
 
     public void add(T item)
     {
-        if (elements.Lenght == razmer)
+        if (elements.Length == razmer)
         {
             T[] newElements = new T[razmer * 2];
             Array.Copy(elements, newElements, razmer);
@@ -56,6 +56,28 @@ public class MyArrayList<T> : IMyList<T>
         elements[razmer] = item;
         razmer++;
     }
-    
-    
+
+    public void Add(T item, int index)
+    {
+        if (index < 0 || index > razmer)
+        {
+            throw new IndexOutOfRangeException();
+        }
+
+        if (razmer == elements.Length)
+        {
+            T[] newElements = new T[2 * razmer];
+            Array.Copy(elements, 0, newElements, 0, index);
+            newElements[index] = item;
+            Array.Copy(elements, index, newElements, index + 1, razmer - index);
+            elements = newElements;
+        }
+        else
+        {
+            Array.Copy(elements, index, elements, index + 1, razmer - index);
+            elements[index] = item;
+        }
+
+        razmer++;
+    }
 }
