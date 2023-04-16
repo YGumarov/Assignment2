@@ -18,22 +18,31 @@ public interface IMyList<T>
 public class MyArrayList<T> : IMyList<T>
 {
     private T[] elements;
-    private int size;
+    private int razmer;
 
     public MyArrayList()
     {
         elements = new T[10];
-        size = 0;
+        razmer = 0;
     }
 
-    public int size()
+    public int Size()
     {
-        return size;
+        return razmer;
     }
 
-    public bool contanins(object o)
+    public bool Contains(object o)
     {
-        
-    }
+        for (int i = 0; i < razmer; i++)
+        {
+            if (elements[i].Equals(o))
+            {
+                return true;
+            }
+        }
 
+        return false;
+    }
+    
+    
 }
