@@ -94,4 +94,22 @@ public class MyArrayList<T> : IMyList<T>
         }
         return false;
     }
+    
+    public T remove(int index)
+    {
+        if (index < 0 || index >= razmer)
+        {
+            throw new IndexOutOfRangeException();
+        }
+        T removedElement = elements[index];
+        Array.Copy(elements, index + 1, elements, index, razmer - index - 1);
+        razmer--;
+        return removedElement;
+    }
+
+    public void Clear()
+    {
+        elements = new T[10];
+        razmer = 0;
+    }
 }
