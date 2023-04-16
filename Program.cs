@@ -25,5 +25,15 @@ public class MyArrayList<T> : IMyList<T>
         elements = new T[10];
         size = 0;
     }
-    
+
+    public int size()
+    {
+        return size;
+    }
+
+    public bool contanins(object o)
+    {
+        
+    }
+
 }
