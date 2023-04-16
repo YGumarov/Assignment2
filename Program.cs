@@ -44,7 +44,7 @@ public class MyArrayList<T> : IMyList<T>
         return false;
     }
 
-    public void add(T item)
+    public void Add(T item)
     {
         if (elements.Length == razmer)
         {
@@ -95,7 +95,7 @@ public class MyArrayList<T> : IMyList<T>
         return false;
     }
     
-    public T remove(int index)
+    public T Remove(int index)
     {
         if (index < 0 || index >= razmer)
         {
@@ -111,5 +111,43 @@ public class MyArrayList<T> : IMyList<T>
     {
         elements = new T[10];
         razmer = 0;
+    }
+    
+    public T Get(int index)
+    {
+        if (index < 0 || index >= razmer)
+        {
+            throw new IndexOutOfRangeException();
+        }
+        return elements[index];
+    }
+
+    public int Indexof(object o)
+    {
+        for (int i = 0; i < razmer; i++)
+        {
+            if (elements[i].Equals(o))
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int Lastindexof(object o)
+    {
+        for (int i = razmer - 1; i >= 0; i--)
+        {
+            if (elements[i].Equals(o))
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void Sort()
+    {
+        Array.Sort(elements, 0, razmer);
     }
 }
