@@ -43,6 +43,19 @@ public class MyArrayList<T> : IMyList<T>
 
         return false;
     }
+
+    public void add(T item)
+    {
+        if (elements.Lenght == razmer)
+        {
+            T[] newElements = new T[razmer * 2];
+            Array.Copy(elements, newElements, razmer);
+            elements = newElements;
+        }
+
+        elements[razmer] = item;
+        razmer++;
+    }
     
     
 }
