@@ -80,4 +80,18 @@ public class MyArrayList<T> : IMyList<T>
 
         razmer++;
     }
+    
+    public bool Remove(T item)
+    {
+        for (int i = 0; i < razmer; i++)
+        {
+            if (elements[i].Equals(item))
+            {
+                Array.Copy(elements, i + 1, elements, i, razmer - i - 1);
+                razmer--;
+                return true;
+            }
+        }
+        return false;
+    }
 }
