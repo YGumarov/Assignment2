@@ -183,4 +183,18 @@ public class MyLinkedList<T> : IMyList<T>
     {
         return size;
     }
+    
+    public bool Contains(T item)
+    {
+        Node current = head;
+        while (current != null)
+        {
+            if (current.Data.Equals(item))
+            {
+                return true;
+            }
+            current = current.Next;
+        }
+        return false;
+    }
 }
