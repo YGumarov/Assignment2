@@ -1,6 +1,6 @@
 ﻿namespace Assignment2;
 
-public interface IMyList<T>
+public partial interface IMyList<T>
 {
     int Size();
     bool Contains(Object o);
@@ -149,5 +149,38 @@ public class MyArrayList<T> : IMyList<T>
     public void Sort()
     {
         Array.Sort(elements, 0, razmer);
+    }
+}
+
+public class MyLinkedList<T> : IMyList<T>
+{
+    private class Node
+    {
+        public T Data { get; set; }
+        public Node Next { get; set; }
+        public Node Prev { get; set; }
+
+        public Node(T data)
+        {
+            Data = data;
+            Next = null;
+            Prev = null;
+        }
+    }
+    
+    private Node head;
+    private Node tail;
+    private int size;
+
+    public MyLinkedList()
+    {
+        head = null;
+        tail = null;
+        size = 0;
+    }
+
+    public int Size()
+    {
+        return size;
     }
 }
