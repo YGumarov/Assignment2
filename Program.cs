@@ -171,16 +171,5 @@ public class MyLinkedList<T> : IMyList<T>
     private Node head;
     private Node tail;
     private int size;
-
-    public MyLinkedList()
-    {
-        head = null;
-        tail = null;
-        size = 0;
-    }
-
-    public int Size()
-    {
-        return size;
-    }
+    
 }
