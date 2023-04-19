@@ -197,4 +197,133 @@ public class MyLinkedList<T> : IMyList<T>
         }
         return false;
     }
+    
+    public void Add(T item)
+    {
+        Node newNode = new Node(item);
+        if (tail == null)
+        {
+            head = newNode;
+            tail = newNode;
+        }
+        else
+        {
+            tail.Next = newNode;
+            newNode.Prev = tail;
+            tail = newNode;
+        }
+        size++;
+    }
+
+    public void Add(T item, int index)
+    {
+        if (index < 0 || index > size)
+        {
+            throw new IndexOutOfRangeException();
+        }
+
+        if (index == size)
+        {
+            Add(item);
+        }
+        else if (index == 0)
+        {
+            Node newNode = new Node(item);
+            newNode.Next = head;
+            head.Prev = newNode;
+            head = newNode;
+            size++;
+        }
+        else
+        {
+            Node current = head;
+            for (int i = 0; i < index; i++)
+            {
+                current = current.Next;
+            }
+
+            Node newNode = new Node(item);
+            newNode.Next = current;
+            newNode.Prev = current.Prev;
+            current.Prev.Next = newNode;
+            current.Prev = newNode;
+            size++;
+        }
+    }
+    
+    public bool Remove(T item)
+    {
+        Node current = head;
+        while (current != null)
+        {
+            if (current.Data.Equals(item))
+            {
+                if (current == head)
+                {
+                    head = current.Next;
+                    if (head != null)
+                    {
+                        head.Prev = null;
+                    }
+                }
+                else if (current == tail)
+                {
+                    tail = current.Prev;
+                    tail.Next = null;
+                }
+                else
+                {
+                    current.Prev.Next = current.Next;
+                    current.Next.Prev = current.Prev;
+                }
+                size--;
+                return true;
+            }
+            current = current.Next;
+        }
+        return false;
+    }
+    
+    public T Remove(int index)
+    {
+        if (index < 0 || index >= size)
+        {
+            throw new IndexOutOfRangeException();
+        }
+
+        Node current = head;
+        for (int i = 0; i < index; i++)
+        {
+            current = current.Next;
+        }
+
+        if (current == head)
+        {
+            head = current.Next;
+            if (head != null)
+            {
+                head.Prev = null;
+            }
+        }
+        else if (current == tail)
+        {
+            tail = current.Prev;
+            tail.Next = null;
+        }
+        else
+        {
+            current.Prev.Next = current.Next;
+            current.Next.Prev = current.Prev;
+        }
+
+        size--;
+        return current.Data;
+    }
+    
+    public void Clear()
+    {
+        head = null;
+        tail = null;
+        size = 0;
+    }
 }
